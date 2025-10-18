@@ -109,5 +109,5 @@ MIT License — use freely, modify, and contribute!
 
 👤 Author
 ---------
-Built by [Your Name or GitHub Profile]  
+Built by Md Arif Hasnat
 Feel free to fork, build, and suggest improvements 🚀
