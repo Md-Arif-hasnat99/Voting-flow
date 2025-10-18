@@ -1,113 +1,83 @@
 🗳️ VotingSystem Smart Contract
 =============================
 
-A lightweight on-chain voting contract for decentralized communities, DAOs, or educational use.
+A lightweight, transparent on-chain voting mechanism designed for decentralized communities, DAOs, or blockchain demos.
 
-📌 Overview
------------
-The VotingSystem smart contract lets the **owner** create proposals and allows **users** to vote on them (one vote per user per proposal). Votes are tallied on-chain, and proposals can be closed by the owner once complete.
+📌 Project Overview
+-------------------
+The **VotingSystem** smart contract enables the owner to create proposals while allowing users to vote once per proposal. Each vote is recorded on-chain and can be tallied publicly. Once voting is complete, proposals can be closed by the owner.
 
-This is a simple, transparent way to manage blockchain-based decisions.
+🔁 Voting is:
+- Transparent ✅
+- Immutable ✅
+- Permissionless for voters ✅
 
-🎯 Use Cases
-------------
-- DAO governance proposals
-- Feature request polls
-- Decentralized decision making
-- On-chain voting tutorial / demo project
-
-🚀 Features
------------
-✅ Create proposals (owner only)  
-✅ One vote per user per proposal  
-✅ Track vote count & proposal status  
-✅ Event logging for UI/backend integration  
-✅ View proposal details and totals  
-
-🧠 Tech Details
+🌐 Network Info
 ---------------
-- 🛠️ **Solidity Version**: ^0.8.19  
-- 📜 **License**: MIT  
-- 🔐 **Access Control**: `onlyOwner` modifier  
-- 💾 **Storage**:
-  - `Proposal[] proposals`
-  - `mapping(uint256 => mapping(address => bool)) hasVoted`
+🧪 **Built On:** Flow EVM Testnet  
+📬 **Contract Address:** `0xf7F4E558180c554522ae3b657C2697aBEf175346`  
 
-📦 Structs & Events
---------------------
-📦 `struct Proposal`  
-- `string description`  
-- `uint256 voteCount`  
-- `bool active`  
+You can interact with the contract using your preferred EVM-compatible wallet and tools like Remix, Metamask, or Hardhat on the Flow EVM Testnet RPC.
 
-📢 Events  
-- `ProposalCreated(uint256 id, string description)`  
-- `Voted(address voter, uint256 proposalId)`  
-- `ProposalClosed(uint256 id, uint256 voteCount)`  
+🧰 Tech Stack Used
+-------------------
+- 💻 **Solidity** `^0.8.19`
+- 🔗 **Flow EVM Testnet** (Ethereum-compatible)
+- 🔨 **Remix IDE / Hardhat / Foundry**
+- 📦 **OpenZeppelin (optional)** – for access control and utilities
+- 🔍 **Sourcify / Blockscout** – for contract verification
 
-🔧 Functions
-------------
-1. 🏗️ `constructor()`  
-   → Sets the deploying address as the contract owner.
+🧠 Core Features
+----------------
+- 👑 Owner can create and close proposals
+- 🙋 Public can vote (once per proposal)
+- 🧾 Votes and proposals are logged with events
+- 📊 Anyone can view proposal status and results
+- 🚫 Duplicate voting is prevented
 
-2. ✍️ `createProposal(string description)`  
-   → Creates a new proposal (owner only).
+🧱 Smart Contract Architecture
+-----------------------------
+🗂️ `struct Proposal`:  
+- `description`: `string`  
+- `voteCount`: `uint256`  
+- `active`: `bool`
 
-3. 🗳️ `vote(uint256 proposalId)`  
-   → Allows any user to vote once on an active proposal.
+📌 State Variables:
+- `Proposal[] public proposals`
+- `mapping(uint256 => mapping(address => bool)) public hasVoted`
+- `address public owner`
 
-4. ❌ `closeProposal(uint256 proposalId)`  
-   → Closes a proposal to stop further voting (owner only).
+🔧 Functions:
+- `createProposal(string description)`
+- `vote(uint256 proposalId)`
+- `closeProposal(uint256 proposalId)`
+- `getProposal(uint256 proposalId)`
+- `getProposalCount()`
 
-5. 🔎 `getProposal(uint256 proposalId)`  
-   → View proposal's details: description, vote count, active status.
+📢 Events:
+- `ProposalCreated`
+- `Voted`
+- `ProposalClosed`
 
-6. 📊 `getProposalCount()`  
-   → Returns total number of proposals created.
-
-👣 How It Works
----------------
-1. 👑 Owner creates a proposal:  
-   `createProposal("Should we enable feature X?");`
-
-2. 🙋 Users vote on proposal ID 0:  
-   `vote(0);`
-
-3. 🧹 Owner ends the vote:  
-   `closeProposal(0);`
-
-4. 🔍 Anyone can check results:  
-   `getProposal(0);`
-
-🛡️ Security Notes
------------------
-- Only the owner can create or close proposals.
-- No time restrictions (deadlines) on voting — consider adding.
-- Public voting — votes are tied to wallet addresses.
-- No anti-spam/Sybil protections — integrate token-gated voting if needed.
-
-🛠️ Future Improvements
------------------------
-✨ Add voting deadlines  
-✨ Anonymous voting (e.g., with ZK or commit-reveal)  
-✨ Token-based weighted voting  
-✨ Multiple-choice or ranked proposals  
-✨ Role-based permissions for proposals
-
-⚠️ Sourcify Verification Tip
-----------------------------
-If you get the error:
-👉 `Sourcify verification failed: Chain 545 not found`
-
-It means the chain you're deploying to isn't recognized by Sourcify (likely a local or custom chain).  
-✅ Use a supported network (e.g., Sepolia, Goerli, Polygon)  
-✅ Or verify manually using your chain’s block explorer if available
+🌱 Future Improvements
+----------------------
+✨ Time-based voting deadlines  
+✨ Token-weighted voting (1 token = 1 vote)  
+✨ Role-based proposal permissions  
+✨ Commit-reveal voting (for privacy)  
+✨ UI frontend (React + Ethers.js / Wagmi + Viem)  
+✨ IPFS support for decentralized proposal metadata  
 
 📜 License
 ----------
-MIT License — use freely, modify, and contribute!
+MIT License — free to use, modify, and distribute.
 
 👤 Author
 ---------
-Built by Md Arif Hasnat
-Feel free to fork, build, and suggest improvements 🚀
+Created by Md Arif Hasnat  
+Contract deployed at:  
+🔗 `0xf7F4E558180c554522ae3b657C2697aBEf175346` (Flow EVM Testnet)
+
+---
+
+🚀 Feel free to fork, contribute, or integrate this into your dApp!
